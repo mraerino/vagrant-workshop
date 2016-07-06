@@ -27,6 +27,9 @@ Falls kein aktuelles System (Ubuntu 16.04) lieber Paket herunterladen: https://w
 
 ### Windows
 
+#### Ruby
+http://rubyinstaller.org/
+
 #### Virtualbox
 https://www.virtualbox.org/wiki/Downloads
 
