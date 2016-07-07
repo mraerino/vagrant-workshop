@@ -1,9 +1,11 @@
+$hostname = "vagrant-devbox"
+
 Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/trusty64"
 
     config.vm.provision "shell", path: "provisioner.sh"
 
-    config.vm.hostname = "vagrant-devbox"
+    config.vm.hostname = $hostname + ".dev"
 
     config.vm.network "private_network", type: "dhcp"
 
@@ -11,7 +13,7 @@ Vagrant.configure(2) do |config|
 
     config.vm.provider "virtualbox" do |vb|
         vb.memory = 1024
-        vb.name = "vagrant-devbox"
+        vb.name = $hostname
         vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 end
