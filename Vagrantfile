@@ -1,5 +1,9 @@
 $hostname = "vagrant-devbox"
 
+unless Vagrant.has_plugin?("landrush")
+  raise 'The landrush plugin is not installed!'
+end
+
 Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/trusty64"
 
@@ -16,4 +20,7 @@ Vagrant.configure(2) do |config|
         vb.name = $hostname
         vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
+
+    config.landrush.enabled = true
+    config.landrush.tld = 'dev'
 end
