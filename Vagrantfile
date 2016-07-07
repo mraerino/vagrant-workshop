@@ -7,7 +7,7 @@ end
 Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/trusty64"
 
-    config.vm.provision "shell", path: "provisioner.sh"
+    config.vm.provision "ansible", playbook: "ansible-provisioner/playbook.yml"
 
     config.vm.hostname = $hostname + ".dev"
 

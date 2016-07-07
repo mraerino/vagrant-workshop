@@ -1,0 +1,31 @@
+---
+
+- hosts: all
+  remote_user: vagrant
+  become: yes
+  tasks:
+  - name: Install dependencies
+    apt:
+      name: "{{ item }}"
+      update_cache: yes
+      state: present
+    with_items:
+      - apache2
+      - libapache2-mod-php5
+      - php5
+      - php5-mysql
+      - mysql-server
+      - python-mysqldb
+
+  - name: Configure MySQL
+    lineinfile: dest=/etc/mysql/my.cnf regexp="^bind-address = " line="bind-address = 0.0.0.0"
+
+  - name: Start MySQL
+    service: name=mysql state=started
+
+  - name: Setup MySQL User
+    mysql_user:
+      login_user: root
+      login_password: ''
+      name: root
+      password: root
