@@ -1,6 +1,8 @@
 Vagrant.configure(2) do |config|
     config.vm.box = "ubuntu/trusty64"
 
+    config.vm.provision "shell", path: "provisioner.sh"
+
     config.vm.hostname = "vagrant-devbox"
 
     config.vm.network "private_network", type: "dhcp"
