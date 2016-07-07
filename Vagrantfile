@@ -1,4 +1,9 @@
-$hostname = "vagrant-devbox"
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV["LC_ALL"] = "en_US.UTF-8"
+
+$hostname = $hostname || "vagrant-devbox"
 
 unless Vagrant.has_plugin?("landrush")
   raise 'The landrush plugin is not installed!'
@@ -23,4 +28,6 @@ Vagrant.configure(2) do |config|
 
     config.landrush.enabled = true
     config.landrush.tld = 'dev'
+
+    config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 end
